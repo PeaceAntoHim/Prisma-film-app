@@ -10,12 +10,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
-model Movie {
-    id Int @id @default(autoincrement())
-    title String 
-    year Int
-    description String @db.VarChar(5000)
-    slug String 
+model Student {
+  id      Int    @id @default(autoincrement())
+  name    String
+  roll_no Int
+  city    String
+  image   String
 }
-
