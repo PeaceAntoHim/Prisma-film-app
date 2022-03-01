@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import dashify from 'dashify'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { PrismaClient } from '@prisma/client'
 import styles from '../styles/Home.module.css'
-import dashify from 'dashify'
 
 const prisma = new PrismaClient()
 
@@ -53,6 +53,13 @@ export default function Home({ data }) {
               placeholder="Enter the year movie.." 
               name="year" 
               onChange={e=> setFormData({ ...formData, year: +e.target.value })} 
+              required 
+            />
+            <input 
+              type="file" 
+              placeholder="Enter the year movie.." 
+              name="pictures" 
+              onChange={e=> setFormData({ ...formData, pictures: e.target.files[0] })} 
               required 
             />
             <textarea 

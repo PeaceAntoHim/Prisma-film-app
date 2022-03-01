@@ -16,7 +16,7 @@ export default function Detail({ movie }) {
               'Content-Type': 'application/json'
           },
         })
-        
+        alert(!response.ok ? 'Something went wrong' : 'Are you sure want to delete this movie?')
         router.push('/show')
         return await response.json()
       }
@@ -31,6 +31,8 @@ export default function Detail({ movie }) {
                 <h2>{ movie.title }</h2>
                 <span>{movie.year}</span>
                 <p>{ movie.description }</p>
+                {/* <img src={ movie.pictures } alt="movie" /> */}
+                <p>{ movie.pictures }</p>
                 <br/><br/>
                 <a onClick={deleteMovie}>Delete this film</a>
             </main>

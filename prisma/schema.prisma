@@ -16,6 +16,7 @@ model Movie {
     title String 
     year Int
     description String @db.VarChar(5000)
-    slug String 
+    slug String
+    pictures Json 
 }
 
