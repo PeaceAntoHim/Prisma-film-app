@@ -1,5 +1,6 @@
 {
-  "name": "next-prisma-film-app",
+  "name": "next-upload",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,18 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@prisma/client": "^3.8.1",
     "base64-js": "^1.5.1",
     "dashify": "^2.0.0",
     "formidable": "^2.0.1",
     "fs": "^0.0.1-security",
     "next": "12.0.9",
+=======
+    "express": "^4.17.3",
+    "formidable": "^2.0.1",
+    "formidable-serverless": "^1.1.1",
+    "fs": "^0.0.1-security",
+    "next": "12.1.0",
+>>>>>>> fff1dedde2285767aefb0e9e42d5fd1c1a678306
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "eslint": "8.7.0",
-    "eslint-config-next": "12.0.9",
-    "prisma": "^3.8.1"
+    "@types/node": "^17.0.21",
+    "@types/react": "^17.0.39",
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.1.0",
+    "prisma": "^3.10.0"
   }
 }

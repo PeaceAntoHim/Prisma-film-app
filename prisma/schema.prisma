@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+<<<<<<< HEAD
 
 model Movie {
     id Int @id @default(autoincrement())
@@ -17,5 +18,12 @@ model Movie {
     year Int
     description String @db.VarChar(5000)
     slug String
+=======
+model Student {
+  id      Int    @id @default(autoincrement())
+  name    String
+  roll_no Int
+  city    String
+  image   String
+>>>>>>> fff1dedde2285767aefb0e9e42d5fd1c1a678306
 }
-
