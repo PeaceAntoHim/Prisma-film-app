@@ -12,6 +12,7 @@ export default function Home({ data }) {
     const router = new useRouter()
 
       /* This variable for input data */
+      const [pictureFile, setPictureFile] = useState(null);
       const [formData, setFormData] = useState({})
       const [movies, setMovies] = useState(data)
       /* This async function to define saveMovie */
@@ -19,14 +20,37 @@ export default function Home({ data }) {
         e.preventDefault();
           setMovies([...movies, formData])
           /* set movies distructuring */
+         try {
           const response = await fetch('/api/movies', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+        });
+        const data = await response.json();
+          if (!response.ok) {
+              throw new Error(data.message);
+          }
+          setPictureFile(null);
+        } catch (err) {
+          console.error(err.message);
+        }
+
+        // router.push('/show')
+        try {
+          const pictureData = new FormData();
+          pictureData.append('image', pictureFile);
+          const res = await fetch('/api/upload', {
               method: 'POST',
-              body: JSON.stringify(formData)
-          })  
-          
-          router.push('/show')
-          return await response.json()
-      }
+              body: pictureData,
+          })
+          const data = await res.json();
+          if (!res.ok) {
+              throw new Error(data.message);
+          }
+          setPictureFile(null);
+        } catch (err) {
+          console.error(err.message);
+        }
+      };
 
   /* This for read data */
   return (
@@ -59,7 +83,7 @@ export default function Home({ data }) {
               type="file" 
               placeholder="Enter the year movie.." 
               name="pictures" 
-              onChange={e=> setFormData({ ...formData, pictures: e.target.files[0] })} 
+              onChange={e=> setPictureFile(e.target.files[0] )} 
               required 
             />
             <textarea 
