@@ -12,44 +12,33 @@ export default function Home({ data }) {
     const router = new useRouter()
 
       /* This variable for input data */
-      const [pictureFile, setPictureFile] = useState(null);
-      const [formData, setFormData] = useState({})
-      const [movies, setMovies] = useState(data)
+      const [formData, setFormData] = useState(data);
+      const [picture, setPicture] = useState(null)
       /* This async function to define saveMovie */
       async function saveMovie(e) {
         e.preventDefault();
-          setMovies([...movies, formData])
-          /* set movies distructuring */
-         try {
-          const response = await fetch('/api/movies', {
-            method: 'POST',
-            body: JSON.stringify(formData),
-        });
-        const data = await response.json();
-          if (!response.ok) {
-              throw new Error(data.message);
-          }
-          setPictureFile(null);
-        } catch (err) {
-          console.error(err.message);
-        }
-
         // router.push('/show')
         try {
-          const pictureData = new FormData();
-          pictureData.append('image', pictureFile);
+          const allData = new FormData();
+          allData.append('image', picture);
+          allData.append('title', formData);
+          allData.append('year', formData);
+          allData.append('description', formData);
+
           const res = await fetch('/api/upload', {
               method: 'POST',
-              body: pictureData,
+              body: allData,
           })
+          
           const data = await res.json();
           if (!res.ok) {
               throw new Error(data.message);
           }
-          setPictureFile(null);
+          setPicture(null);
         } catch (err) {
           console.error(err.message);
         }
+        console.log(formData);
       };
 
   /* This for read data */
@@ -83,7 +72,7 @@ export default function Home({ data }) {
               type="file" 
               placeholder="Enter the year movie.." 
               name="pictures" 
-              onChange={e=> setPictureFile(e.target.files[0] )} 
+              onChange={e=> setPicture(e.target.files[0] )} 
               required 
             />
             <textarea 
